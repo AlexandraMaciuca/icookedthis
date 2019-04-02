@@ -13,22 +13,9 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IngredientsToBeComputedDto {
+
     private Set<IngredientToBeComputed> ingredients;
+
     private IngredientToBeComputed ingredientToComputeBy;
 
-    public Set<IngredientToBeComputed> getIngredients() {
-        return ingredients;
-    }
-
-    public void setIngredients(Set<IngredientToBeComputed> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public IngredientToBeComputed getIngredientToComputeBy() {
-        return ingredientToComputeBy;
-    }
-
-    public void setIngredientToComputeBy(IngredientToBeComputed ingredientToComputeBy) {
-        this.ingredientToComputeBy = ingredientToComputeBy;
-    }
 }

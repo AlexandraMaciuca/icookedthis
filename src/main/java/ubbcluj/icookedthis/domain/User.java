@@ -28,9 +28,9 @@ public class User {
     private UUID profileImageId;
     private String cookingExperience;
     @OneToMany(mappedBy = "user")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private List<Recipe> recipes;
     @OneToMany(mappedBy = "user")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    //@LazyCollection(LazyCollectionOption.FALSE)
     private List<Review> reviews;
 }

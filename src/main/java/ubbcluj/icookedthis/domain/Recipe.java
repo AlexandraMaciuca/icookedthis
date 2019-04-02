@@ -20,20 +20,14 @@ public class Recipe {
     @Id
     private UUID id;
     private String title;
-
-    @OneToMany(mappedBy = "recipe")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "recipe")// @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ingredient> ingredients;
-
-    @OneToMany(mappedBy = "recipe")
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "recipe")// @LazyCollection(LazyCollectionOption.FALSE)
     private List<Review> reviews;
-
     private String description;
     private String time;
     private String recommendedFor; // cooking experience
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false) @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     private UUID photoId;
     private Date date;

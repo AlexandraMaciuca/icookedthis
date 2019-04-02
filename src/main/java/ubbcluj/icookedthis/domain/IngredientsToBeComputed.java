@@ -11,6 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class IngredientsToBeComputed {
+
     private Set<IngredientToBeComputed> ingredients;
     private IngredientToBeComputed ingredientToComputeBy;
 
