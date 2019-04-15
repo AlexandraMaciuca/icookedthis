@@ -21,7 +21,8 @@ public class RecipeMapper {
                 .time(dto.getTime())
                 .recommendedFor(dto.getRecommendedFor())
                 .photoId(dto.getPhotoId())
-                .date(dto.getDate()).build();
+                .date(dto.getDate())
+                .build();
     }
 
     public RecipeDto toDto(Recipe recipe) {
@@ -31,6 +32,8 @@ public class RecipeMapper {
                 .ingredients(ingredientMapper.toDtos(recipe.getIngredients()))
                 .description(recipe.getDescription())
                 .time(recipe.getTime())
-                .recommendedFor(recipe.getRecommendedFor()).build();
+                .recommendedFor(recipe.getRecommendedFor())
+                .date(recipe.getDate())
+                .build();
     }
 }

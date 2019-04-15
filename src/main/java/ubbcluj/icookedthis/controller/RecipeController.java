@@ -9,7 +9,7 @@ import ubbcluj.icookedthis.service.RecipeService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/recipe-service")
+@RequestMapping("/recipes")
 public class RecipeController {
 
     private RecipeService recipeService;
@@ -18,7 +18,7 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/all")
+    @GetMapping()
     public List<RecipeDto> findAll(){
         return recipeService.findAll();
     }

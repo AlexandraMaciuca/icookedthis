@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-@RequestMapping("/ingredientcomputer-service")
+@RequestMapping("/ingredientstobecomputed")
 public class IngredientsToBeComputedController {
     private IngredientsToBeComputedService ingredientsToBeComputedService;
 
@@ -19,7 +19,7 @@ public class IngredientsToBeComputedController {
         this.ingredientsToBeComputedService = ingredientsToBeComputedService;
     }
 
-    @PostMapping("/compute")
+    @PostMapping()
     @ResponseStatus(HttpStatus.OK)
     public Set<IngredientToBeComputed> compute(@RequestBody IngredientsToBeComputedDto ingredientsDto){
         return ingredientsToBeComputedService.computeIngredients(ingredientsDto);
