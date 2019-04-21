@@ -25,6 +25,7 @@ public class UserServiceImpl implements UserService {
     public UserDto register(UserDto userDto) {
         User appUser = userMapper.toEntity(userDto);
         //appUser.setId(UUID.randomUUID());
+
         User result = userRepository.save(appUser);
         result.setPassword(null);
         UserDto resultDto = userMapper.toDto(result);

@@ -32,4 +32,12 @@ public class UserMapper {
                 .cookingExperience(entity.getCookingExperience())
                 .build();
     }
+
+    public UserDto toSimpleDto(final User entity){
+        return UserDto.builder()
+                .id(entity.getId())
+                .firstName(entity.getFirstName())
+                .lastName(entity.getLastName()).build();
+    }
+
 }

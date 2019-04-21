@@ -8,9 +8,11 @@ import ubbcluj.icookedthis.dto.RecipeDto;
 public class RecipeMapper {
 
     private final IngredientMapper ingredientMapper;
+    private final UserMapper userMapper;
 
-    public RecipeMapper(IngredientMapper ingredientMapper) {
+    public RecipeMapper(IngredientMapper ingredientMapper, UserMapper userMapper) {
         this.ingredientMapper = ingredientMapper;
+        this.userMapper = userMapper;
     }
 
     public Recipe toEntity(RecipeDto dto) {
@@ -34,6 +36,7 @@ public class RecipeMapper {
                 .time(recipe.getTime())
                 .recommendedFor(recipe.getRecommendedFor())
                 .date(recipe.getDate())
+                .user(userMapper.toSimpleDto(recipe.getUser()))
                 .build();
     }
 }

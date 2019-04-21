@@ -1,9 +1,6 @@
 package ubbcluj.icookedthis.domain;
 
 import lombok.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -16,7 +13,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity()
-@Table(name="\"User\"")
+@Table(name = "\"User\"")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,9 +26,7 @@ public class User {
     private UUID profileImageId;
     private String cookingExperience;
     @OneToMany(mappedBy = "user")
-    //@LazyCollection(LazyCollectionOption.FALSE)
     private List<Recipe> recipes;
     @OneToMany(mappedBy = "user")
-    //@LazyCollection(LazyCollectionOption.FALSE)
     private List<Review> reviews;
 }

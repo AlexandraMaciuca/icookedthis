@@ -1,9 +1,6 @@
 package ubbcluj.icookedthis.domain;
 
 import lombok.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -27,7 +24,8 @@ public class Recipe {
     private String description;
     private String time;
     private String recommendedFor; // cooking experience
-    @ManyToOne(optional = false) @JoinColumn(name = "user_id", referencedColumnName = "id")
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
     private UUID photoId;
     private Date date;
