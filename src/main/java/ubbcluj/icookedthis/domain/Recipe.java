@@ -15,9 +15,10 @@ import java.util.UUID;
 @Entity(name = "recipe")
 public class Recipe {
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String title;
-    @OneToMany(mappedBy = "recipe")// @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "recipe",  cascade = CascadeType.ALL)// @LazyCollection(LazyCollectionOption.FALSE)
     private List<Ingredient> ingredients;
     @OneToMany(mappedBy = "recipe")// @LazyCollection(LazyCollectionOption.FALSE)
     private List<Review> reviews;
@@ -27,6 +28,5 @@ public class Recipe {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
-    private UUID photoId;
     private Date date;
 }

@@ -26,10 +26,13 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public RecipeDto addRecipe(final RecipeDto dto) {
+        log.info("Attempting to add recipe with dto : " + dto);
         final Recipe recipe = recipeMapper.toEntity(dto);
         final Recipe persistedRecipe = recipeRepository.save(recipe);
 
-        return recipeMapper.toDto(persistedRecipe);
+        RecipeDto result = recipeMapper.toDto(persistedRecipe);
+        log.info("result : " + result);
+        return result;
     }
 
     @Override

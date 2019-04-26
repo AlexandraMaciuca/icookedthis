@@ -23,9 +23,8 @@ public class User {
     @Email
     private String email;
     private String password;
-    private UUID profileImageId;
     private String cookingExperience;
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user",  cascade = CascadeType.ALL)
     private List<Recipe> recipes;
     @OneToMany(mappedBy = "user")
     private List<Review> reviews;

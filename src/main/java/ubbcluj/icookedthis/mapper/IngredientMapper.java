@@ -18,7 +18,7 @@ public class IngredientMapper {
 
     public IngredientDto toDto(final Ingredient entity) {
         return new IngredientDto(
-                entity.getIngredientId(),
+                entity.getId(),
                 entity.getName(),
                 entity.getQuantity(),
                 entity.getUnit(),
@@ -29,12 +29,18 @@ public class IngredientMapper {
 
     public Ingredient toEntity(final IngredientDto dto) {
         return new Ingredient(
-                dto.getIngredientId(),
+                dto.getId(),
                 dto.getName(),
                 dto.getQuantity(),
                 dto.getUnit(),
                 dto.getTemperature(),
                 dto.getRecipe()
         );
+    }
+
+    public List<Ingredient> toEntities(List<IngredientDto> ingredients) {
+        return ingredients.stream()
+                .map(this::toEntity)
+                .collect(Collectors.toList());
     }
 }

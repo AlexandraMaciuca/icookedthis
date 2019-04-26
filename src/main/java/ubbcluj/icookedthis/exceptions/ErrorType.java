@@ -2,15 +2,23 @@ package ubbcluj.icookedthis.exceptions;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Value;
 import lombok.experimental.UtilityClass;
 
 @Getter
 @AllArgsConstructor
 public enum ErrorType {
 
-    INEXISTENT_INGREDIENT_TO_COMPUTE_BY("Item to compute by is not present in the ingredients list.");
+    INVALID_EMAIL(Value.INVALID_EMAIL, "Please provide a valid email."),
+    USER_DOES_NOT_EXIST(Value.USER_DOES_NOT_EXIST, "User does not exist");
 
+    private String code;
     private String description;
+
+    @UtilityClass
+    public class Value {
+        private static final String PREFIX = "icookedthis.";
+        private static final String INVALID_EMAIL = PREFIX + "100";
+        private static final String USER_DOES_NOT_EXIST = PREFIX + "101";
+    }
 
 }

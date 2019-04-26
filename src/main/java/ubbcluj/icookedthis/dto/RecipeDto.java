@@ -4,9 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ubbcluj.icookedthis.domain.Ingredient;
-import ubbcluj.icookedthis.domain.Review;
-import ubbcluj.icookedthis.domain.User;
 
 import java.util.Date;
 import java.util.List;

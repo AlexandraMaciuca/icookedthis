@@ -1,9 +1,9 @@
 package ubbcluj.icookedthis.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import ubbcluj.icookedthis.dto.RecipeDto;
+import ubbcluj.icookedthis.dto.UserDto;
 import ubbcluj.icookedthis.service.RecipeService;
 
 import java.util.List;
@@ -21,5 +21,11 @@ public class RecipeController {
     @GetMapping()
     public List<RecipeDto> findAll(){
         return recipeService.findAll();
+    }
+
+    @PostMapping()
+    public ResponseEntity<RecipeDto> addRecipe(@RequestBody RecipeDto dto) {
+        RecipeDto result = recipeService.addRecipe(dto);
+        return ResponseEntity.ok(result);
     }
 }

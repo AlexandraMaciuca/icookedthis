@@ -6,7 +6,6 @@ import ubbcluj.icookedthis.dto.RecipeDto;
 
 @Component
 public class RecipeMapper {
-
     private final IngredientMapper ingredientMapper;
     private final UserMapper userMapper;
 
@@ -22,8 +21,9 @@ public class RecipeMapper {
                 .description(dto.getDescription())
                 .time(dto.getTime())
                 .recommendedFor(dto.getRecommendedFor())
-                .photoId(dto.getPhotoId())
                 .date(dto.getDate())
+                .user(userMapper.toEntity(dto.getUser()))
+                .ingredients(ingredientMapper.toEntities(dto.getIngredients()))
                 .build();
     }
 
