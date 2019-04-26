@@ -25,7 +25,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto register(UserDto userDto) {
         User user = userMapper.toEntity(userDto);
-        userValidator.validateEmailFormat(user);
+
+        userValidator.validateUserRegistration(user);
 
         User result = userRepository.save(user);
         result.setPassword(null);
