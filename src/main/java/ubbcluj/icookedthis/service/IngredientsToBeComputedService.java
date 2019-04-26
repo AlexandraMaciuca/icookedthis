@@ -7,9 +7,8 @@ import ubbcluj.icookedthis.domain.IngredientsToBeComputed;
 import ubbcluj.icookedthis.dto.IngredientsToBeComputedDto;
 import ubbcluj.icookedthis.mapper.IngredientsToBeComputedMapper;
 import ubbcluj.icookedthis.repository.IngredientsToBeComputedRepositoryImpl;
+import ubbcluj.icookedthis.validators.IngredientsToBeComputedValidator;
 
-import java.security.InvalidParameterException;
-import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -18,25 +17,19 @@ public class IngredientsToBeComputedService {
 
     private final IngredientsToBeComputedRepositoryImpl repository;
     private final IngredientsToBeComputedMapper mapper;
+    private final IngredientsToBeComputedValidator validator;
 
-    public IngredientsToBeComputedService(IngredientsToBeComputedRepositoryImpl repository, IngredientsToBeComputedMapper mapper) {
+    public IngredientsToBeComputedService(IngredientsToBeComputedRepositoryImpl repository, IngredientsToBeComputedMapper mapper, IngredientsToBeComputedValidator validator) {
         this.repository = repository;
         this.mapper = mapper;
+        this.validator = validator;
     }
 
     public Set<IngredientToBeComputed> computeIngredients(IngredientsToBeComputedDto ingredientsToBeComputedDto) {
-        validateContainsIngredient(ingredientsToBeComputedDto.getIngredients(),
-                ingredientsToBeComputedDto.getIngredientToComputeBy());
-        return repository.computeIngredients(mapper.toEntity(ingredientsToBeComputedDto));
+        IngredientsToBeComputed ingredients = mapper.toEntity(ingredientsToBeComputedDto);
+        validator.validateIngredientToComputeBy(ingredients);
+        return repository.computeIngredients(ingredients);
     }
 
-    private void validateContainsIngredient(final Set<IngredientToBeComputed> ingredients,
-                                            final IngredientToBeComputed ingredientsToBeComputed) {
-        final boolean isPresent = ingredients.stream()
-                .anyMatch(ingredient -> ingredient.getName().equals(ingredientsToBeComputed.getName()));
-        if (!isPresent) {
-            throw new InvalidParameterException("Item to compute by is not present in the ingredients list.");
-        }
-    }
 
 }

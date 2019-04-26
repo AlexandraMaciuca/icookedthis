@@ -22,7 +22,6 @@ public class RecipeDto {
     private String time;
     private String recommendedFor; // cooking experience
     private UserDto user;
-    private UUID photoId;
     private Date date;
 
 }
