@@ -18,9 +18,9 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String title;
-    @OneToMany(mappedBy = "recipe",  cascade = CascadeType.ALL)// @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
     private List<Ingredient> ingredients;
-    @OneToMany(mappedBy = "recipe")// @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "recipe")
     private List<Review> reviews;
     private String description;
     private String time;

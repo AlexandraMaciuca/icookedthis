@@ -14,7 +14,6 @@ import java.util.Set;
 @Slf4j
 @Service
 public class IngredientsToBeComputedService {
-
     private final IngredientsToBeComputedRepositoryImpl repository;
     private final IngredientsToBeComputedMapper mapper;
     private final IngredientsToBeComputedValidator validator;
@@ -30,6 +29,4 @@ public class IngredientsToBeComputedService {
         validator.validateIngredientToComputeBy(ingredients);
         return repository.computeIngredients(ingredients);
     }
-
-
 }

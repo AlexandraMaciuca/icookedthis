@@ -1,7 +1,6 @@
 package ubbcluj.icookedthis.domain;
 
 import lombok.*;
-import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.UUID;

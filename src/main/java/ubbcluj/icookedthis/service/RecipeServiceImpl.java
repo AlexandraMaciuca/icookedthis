@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class RecipeServiceImpl implements RecipeService {
-
     private final RecipeRepository recipeRepository;
     private final RecipeMapper recipeMapper;
 
@@ -27,7 +26,8 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public RecipeDto addRecipe(final RecipeDto dto) {
         log.info("Attempting to add recipe with dto : " + dto);
-        final Recipe recipe = recipeMapper.toEntity(dto);
+        Recipe recipe = recipeMapper.toEntity(dto);
+        recipe.getIngredients().forEach((child) -> child.setRecipe(recipe));
         final Recipe persistedRecipe = recipeRepository.save(recipe);
 
         RecipeDto result = recipeMapper.toDto(persistedRecipe);

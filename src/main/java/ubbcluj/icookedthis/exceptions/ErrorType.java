@@ -10,8 +10,8 @@ public enum ErrorType {
 
     INVALID_EMAIL(Value.INVALID_EMAIL, "Please provide a valid email."),
     USER_DOES_NOT_EXIST(Value.USER_DOES_NOT_EXIST, "User does not exist"),
-    EMPTY_FIELDS(Value.EMPTY_FIELDS," Empty fields"),
-    SHORT_PASSWORD(Value.SHORT_PASSWORD , "Password is too short.");
+    EMPTY_FIELDS(Value.EMPTY_FIELDS, " Empty fields"),
+    SHORT_PASSWORD(Value.SHORT_PASSWORD, "Password is too short.");
 
     private String code;
     private String description;
