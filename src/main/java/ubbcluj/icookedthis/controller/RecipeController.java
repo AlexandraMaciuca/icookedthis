@@ -8,7 +8,7 @@ import ubbcluj.icookedthis.service.RecipeService;
 
 import java.util.List;
 import java.util.UUID;
-
+ 
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
