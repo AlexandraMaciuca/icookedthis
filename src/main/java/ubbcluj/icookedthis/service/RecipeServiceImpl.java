@@ -7,6 +7,7 @@ import ubbcluj.icookedthis.dto.RecipeDto;
 import ubbcluj.icookedthis.mapper.RecipeMapper;
 import ubbcluj.icookedthis.repository.RecipeRepository;
 
+import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -47,11 +48,14 @@ public class RecipeServiceImpl implements RecipeService {
                 .collect(Collectors.toList());
     }
 
-
-    /*@Override
+    @Override
     public RecipeDto findById(UUID id) {
-        return null;
-    }*/
+        log.info("Searching for recipe with id : " + id);
+        Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id.toString()));
+        RecipeDto dto = recipeMapper.toDto(recipe);
+        log.info("result of searching : " + dto);
+        return recipeMapper.toDto(recipe);
+    }
 
     @Override
     @Transactional

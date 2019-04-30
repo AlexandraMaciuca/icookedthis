@@ -8,7 +8,7 @@ import ubbcluj.icookedthis.service.RecipeService;
 
 import java.util.List;
 import java.util.UUID;
- 
+
 @RestController
 @RequestMapping("/recipes")
 public class RecipeController {
@@ -22,6 +22,11 @@ public class RecipeController {
     @GetMapping()
     public List<RecipeDto> findAll(){
         return recipeService.findAll();
+    }
+
+    @GetMapping("/{id}")
+    public RecipeDto findById(@PathVariable UUID id){
+        return recipeService.findById(id);
     }
 
     @PostMapping()

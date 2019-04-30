@@ -11,6 +11,8 @@ public interface RecipeService {
 
     List<RecipeDto> findAll();
 
+    RecipeDto findById(UUID id);
+
     //RecipeDto findById(UUID id);
 
     void deleteRecipe(UUID id);

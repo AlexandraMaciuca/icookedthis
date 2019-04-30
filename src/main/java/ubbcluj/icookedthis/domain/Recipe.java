@@ -18,7 +18,7 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String title;
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Ingredient> ingredients;
     @OneToMany(mappedBy = "recipe")
     private List<Review> reviews;

@@ -16,6 +16,23 @@ public class IngredientMapper {
                 .collect(Collectors.toList());
     }
 
+    public List<IngredientDto> toFullDtos(final List<Ingredient> entities) {
+        return entities.stream()
+                .map(this::toFullDto)
+                .collect(Collectors.toList());
+    }
+
+    public IngredientDto toFullDto(final Ingredient entity) {
+        return new IngredientDto(
+                entity.getId(),
+                entity.getName(),
+                entity.getQuantity(),
+                entity.getUnit(),
+                entity.getTemperature(),
+                entity.getRecipe()
+        );
+    }
+
     public IngredientDto toDto(final Ingredient entity) {
         return new IngredientDto(
                 entity.getId(),

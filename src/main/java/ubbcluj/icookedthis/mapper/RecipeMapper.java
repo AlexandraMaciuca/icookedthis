@@ -39,4 +39,17 @@ public class RecipeMapper {
                 .user(userMapper.toSimpleDto(recipe.getUser()))
                 .build();
     }
+
+    public RecipeDto toFullDto(Recipe recipe) {
+        return RecipeDto.builder()
+                .id(recipe.getId())
+                .title(recipe.getTitle())
+                .ingredients(ingredientMapper.toFullDtos(recipe.getIngredients()))
+                .description(recipe.getDescription())
+                .time(recipe.getTime())
+                .recommendedFor(recipe.getRecommendedFor())
+                .date(recipe.getDate())
+                .user(userMapper.toSimpleDto(recipe.getUser()))
+                .build();
+    }
 }
