@@ -13,5 +13,5 @@ public interface RecipeService {
 
     //RecipeDto findById(UUID id);
 
-    void delete(UUID id);
+    void deleteRecipe(UUID id);
 }

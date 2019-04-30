@@ -7,6 +7,7 @@ import ubbcluj.icookedthis.dto.UserDto;
 import ubbcluj.icookedthis.service.RecipeService;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/recipes")
@@ -27,5 +28,10 @@ public class RecipeController {
     public ResponseEntity<RecipeDto> addRecipe(@RequestBody RecipeDto dto) {
         RecipeDto result = recipeService.addRecipe(dto);
         return ResponseEntity.ok(result);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteRecipe(@PathVariable UUID id){
+        recipeService.deleteRecipe(id);
     }
 }

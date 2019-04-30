@@ -4,12 +4,10 @@ import org.springframework.stereotype.Component;
 import ubbcluj.icookedthis.domain.User;
 import ubbcluj.icookedthis.dto.UserDto;
 
-import java.util.UUID;
-
 @Component
 public class UserMapper {
 
-    public User toEntity(UserDto dto){
+    public User toEntity(UserDto dto) {
         return User.builder()
                 .id(dto.getId())
                 .firstName(dto.getFirstName())
@@ -20,7 +18,7 @@ public class UserMapper {
                 .build();
     }
 
-    public UserDto toDto(User entity){
+    public UserDto toDto(User entity) {
         return UserDto.builder()
                 .id(entity.getId())
                 .firstName(entity.getFirstName())
@@ -31,7 +29,7 @@ public class UserMapper {
                 .build();
     }
 
-    public UserDto toSimpleDto(final User entity){
+    public UserDto toSimpleDto(final User entity) {
         return UserDto.builder()
                 .id(entity.getId())
                 .firstName(entity.getFirstName())

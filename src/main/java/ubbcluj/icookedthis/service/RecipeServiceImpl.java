@@ -8,6 +8,9 @@ import ubbcluj.icookedthis.mapper.RecipeMapper;
 import ubbcluj.icookedthis.repository.RecipeRepository;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -27,6 +30,7 @@ public class RecipeServiceImpl implements RecipeService {
     public RecipeDto addRecipe(final RecipeDto dto) {
         log.info("Attempting to add recipe with dto : " + dto);
         Recipe recipe = recipeMapper.toEntity(dto);
+        recipe.setDate(new Date());
         recipe.getIngredients().forEach((child) -> child.setRecipe(recipe));
         final Recipe persistedRecipe = recipeRepository.save(recipe);
 
@@ -43,13 +47,15 @@ public class RecipeServiceImpl implements RecipeService {
                 .collect(Collectors.toList());
     }
 
+
     /*@Override
     public RecipeDto findById(UUID id) {
         return null;
     }*/
 
     @Override
-    public void delete(final UUID id) {
+    @Transactional
+    public void deleteRecipe(final UUID id) {
         recipeRepository.deleteById(id);
     }
 }

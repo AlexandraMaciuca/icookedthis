@@ -23,7 +23,7 @@ public class IngredientMapper {
                 entity.getQuantity(),
                 entity.getUnit(),
                 entity.getTemperature(),
-                entity.getRecipe()
+                null//entity.getRecipe()
         );
     }
 
@@ -34,7 +34,8 @@ public class IngredientMapper {
                 dto.getQuantity(),
                 dto.getUnit(),
                 dto.getTemperature(),
-                dto.getRecipe()
+                null
+                //,dto.getRecipe()
         );
     }
 
