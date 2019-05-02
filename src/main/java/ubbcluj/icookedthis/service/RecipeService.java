@@ -9,11 +9,11 @@ import java.util.UUID;
 public interface RecipeService {
     RecipeDto addRecipe(RecipeDto recipeDto);
 
+    RecipeDto updateRecipe(UUID id, RecipeDto recipeDto);
+
     List<RecipeDto> findAll();
 
     RecipeDto findById(UUID id);
-
-    //RecipeDto findById(UUID id);
 
     void deleteRecipe(UUID id);
 }

@@ -9,8 +9,6 @@ import ubbcluj.icookedthis.repository.RecipeRepository;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -37,6 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
 
         RecipeDto result = recipeMapper.toDto(persistedRecipe);
         log.info("result : " + result);
+
         return result;
     }
 
@@ -51,7 +50,7 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public RecipeDto findById(UUID id) {
         log.info("Searching for recipe with id : " + id);
-        Recipe recipe = recipeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(id.toString()));
+        Recipe recipe = recipeRepository.findById(id).orElse(null);
         RecipeDto dto = recipeMapper.toDto(recipe);
         log.info("result of searching : " + dto);
         return recipeMapper.toDto(recipe);
@@ -59,7 +58,23 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     @Transactional
+    public RecipeDto updateRecipe(UUID id, RecipeDto dto) {
+        log.info("Attempting to update recipe with id : " + id + " and dto : " + dto);
+        Recipe recipe = recipeMapper.toEntity(dto);
+        recipe.setId(id);
+        recipe.setDate(new Date());
+        //recipe.getIngredients().forEach((child) -> child.setRecipe(recipe));
+        final Recipe persistedRecipe = recipeRepository.save(recipe);
+
+        RecipeDto result = recipeMapper.toDto(persistedRecipe);
+        log.info("update recipe result : " + result);
+        return result;
+    }
+
+    @Override
+    @Transactional
     public void deleteRecipe(final UUID id) {
         recipeRepository.deleteById(id);
     }
+
 }
