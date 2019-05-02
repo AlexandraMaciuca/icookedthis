@@ -56,7 +56,7 @@ public class RecipeController {
             return ResponseEntity.notFound().build();
         }
         RecipeDto result = recipeService.updateRecipe(id, dto);
-        
+
         return ResponseEntity.ok(result);
     }
 
