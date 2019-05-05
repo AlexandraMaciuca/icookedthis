@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
         result.setPassword(null);
         UserDto resultDto = userMapper.toDto(result);
 
-        log.info("login result : " + resultDto);
+        log.info("register result : " + resultDto);
         return resultDto;
     }
 

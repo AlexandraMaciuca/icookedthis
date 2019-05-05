@@ -22,15 +22,17 @@ public class ExceptionHandling {
 
     @ExceptionHandler
     private ResponseEntity<ErrorView> handleException(final RestRuntimeException ex) {
+        return new ResponseEntity<>(new ErrorView(ex.getErrorType(), ex.getMessage()),
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 
+    @ExceptionHandler
+    private ResponseEntity<ErrorView> handleException(final ResourceNotFoundException ex) {
         return new ResponseEntity<>(new ErrorView(ex.getErrorType(), ex.getMessage()), HttpStatus.NOT_FOUND);
-
     }
 
     private ResponseEntity<ErrorView> handleException(final InvalidDataException ex) {
-
         return new ResponseEntity<>(new ErrorView(ex.getErrorType(), ex.getMessage()), HttpStatus.UNPROCESSABLE_ENTITY);
-
     }
 
 }

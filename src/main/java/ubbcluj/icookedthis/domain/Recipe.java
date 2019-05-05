@@ -1,6 +1,7 @@
 package ubbcluj.icookedthis.domain;
 
 import lombok.*;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -10,6 +10,7 @@ public enum ErrorType {
 
     INVALID_EMAIL(Value.INVALID_EMAIL, "Please provide a valid email."),
     USER_NOT_FOUND(Value.USER_NOT_FOUND, "User not found."),
+    RECIPE_NOT_FOUND(Value.RECIPE_NOT_FOUND, "Recipe not found."),
     EMPTY_FIELDS(Value.EMPTY_FIELDS, " Empty fields"),
     BAD_CREDENTIALS(Value.BAD_CREDENTIALS, "Bad credentials."),
     SHORT_PASSWORD(Value.SHORT_PASSWORD, "Password is too short.");
@@ -25,6 +26,8 @@ public enum ErrorType {
         private static final String EMPTY_FIELDS = PREFIX + "102";
         private static final String SHORT_PASSWORD = PREFIX + "103";
         private static final String BAD_CREDENTIALS = PREFIX + "104";
+        private static final String RECIPE_NOT_FOUND = PREFIX + "105";
+
     }
 
 }

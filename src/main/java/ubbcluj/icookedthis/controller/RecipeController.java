@@ -1,5 +1,6 @@
 package ubbcluj.icookedthis.controller;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -25,23 +26,14 @@ public class RecipeController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<RecipeDto> findById(@PathVariable UUID id) {
-        RecipeDto result = recipeService.findById(id);
-        if (result == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(result);
+    public RecipeDto findById(@PathVariable UUID id) {
+        return recipeService.findById(id);
     }
 
-    @PostMapping()
-    public ResponseEntity<Object> addRecipe(@RequestBody RecipeDto dto) {
-        RecipeDto result = recipeService.addRecipe(dto);
-
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-                .buildAndExpand(result.getId()).toUri();
-
-        return ResponseEntity.created(location).build();
-        //return ResponseEntity.ok(result);
+    @PostMapping
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public RecipeDto addRecipe(@RequestBody RecipeDto dto) {
+        return recipeService.addRecipe(dto);
     }
 
     @DeleteMapping("/{id}")

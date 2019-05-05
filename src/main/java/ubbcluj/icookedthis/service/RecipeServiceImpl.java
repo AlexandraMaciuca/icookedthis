@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ubbcluj.icookedthis.domain.Recipe;
 import ubbcluj.icookedthis.dto.RecipeDto;
+import ubbcluj.icookedthis.exceptions.ErrorType;
+import ubbcluj.icookedthis.exceptions.ResourceNotFoundException;
 import ubbcluj.icookedthis.mapper.RecipeMapper;
 import ubbcluj.icookedthis.repository.RecipeRepository;
 
@@ -50,10 +52,12 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public RecipeDto findById(UUID id) {
         log.info("Searching for recipe with id : " + id);
-        Recipe recipe = recipeRepository.findById(id).orElse(null);
+        Recipe recipe = recipeRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(ErrorType.RECIPE_NOT_FOUND,
+                        "Recipe not found for id " + id));
         RecipeDto dto = recipeMapper.toDto(recipe);
         log.info("result of searching : " + dto);
-        return recipeMapper.toDto(recipe);
+        return dto;
     }
 
     @Override
