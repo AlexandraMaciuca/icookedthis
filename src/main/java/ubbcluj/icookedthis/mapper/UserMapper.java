@@ -13,7 +13,6 @@ public class UserMapper {
                 .firstName(dto.getFirstName())
                 .lastName(dto.getLastName())
                 .email(dto.getEmail())
-                .password(dto.getPassword())
                 .cookingExperience(dto.getCookingExperience())
                 .build();
     }
@@ -24,7 +23,6 @@ public class UserMapper {
                 .firstName(entity.getFirstName())
                 .lastName(entity.getLastName())
                 .email(entity.getEmail())
-                .password(entity.getPassword())
                 .cookingExperience(entity.getCookingExperience())
                 .build();
     }

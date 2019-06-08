@@ -1,0 +1,11 @@
+PostgreSQL:
+  restart: always
+  image: sameersbn/postgresql:10-1
+  ports:
+    - "5432:5432"
+  environment:
+    - DEBUG=false
+    - DB_USER=postgres
+    - DB_PASS=password
+    - DB_NAME=IcookedthisDatabase
+    - PG_PASSWORD=password

@@ -2,6 +2,7 @@ package ubbcluj.icookedthis.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import ubbcluj.icookedthis.domain.User;
 import ubbcluj.icookedthis.dto.UserDto;
@@ -23,11 +24,14 @@ public class UserServiceImpl implements UserService {
     private final UserMapper userMapper;
     private final UserRepository userRepository;
     private final UserValidator userValidator;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository, UserValidator userValidator) {
+    public UserServiceImpl(UserMapper userMapper, UserRepository userRepository, UserValidator userValidator,
+                           final BCryptPasswordEncoder passwordEncoder) {
         this.userMapper = userMapper;
         this.userRepository = userRepository;
         this.userValidator = userValidator;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -36,7 +40,7 @@ public class UserServiceImpl implements UserService {
 
         User user = userMapper.toEntity(userDto);
 
-        String hashedPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        String hashedPassword = passwordEncoder.encode(userDto.getPassword());
         user.setPassword(hashedPassword);
         userValidator.validateUserRegistration(user);
 
